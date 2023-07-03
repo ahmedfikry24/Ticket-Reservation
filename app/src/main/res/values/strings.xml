@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Ticket Reservations</string>
+    <string name="movie_time">Movie Time</string>
+    <string name="close">Close</string>
+    <string name="movie_time_hour">2h</string>
+    <string name="movie_time_minutes">33m</string>
+    <string name="movie_image">Movie Image</string>
+    <string name="play_movie">Play Movie</string>
+    <string name="_6_8">6,8</string>
+    <string name="_10">/10</string>
+    <string name="imdb">IMDb</string>
+    <string name="_36">36</string>
+    <string name="_4">4</string>
+    <string name="ign">IGN</string>
+    <string name="percentage_mark">%</string>
+    <string name="rotten_tomatoes">Rotten Tomatoes</string>
+    <string name="fantasy">Fantasy</string>
+    <string name="adventure">Adventure</string>
+    <string name="fantastic_beasts_the_secrets_of_dumbledore">"Fantastic Beasts: The Secrets of Dumbledore "</string>
+    <string name="actor_image">Actor Image</string>
+    <string name="movie_description">"Professor Albus Dumbledore Knows the Powerful of dark wizard Gellert Grindlewald is moving to seize control of the wizarding world "</string>
+    <string name="booking">Booking</string>
 </resources>
