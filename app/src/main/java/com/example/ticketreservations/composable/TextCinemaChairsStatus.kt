@@ -24,7 +24,7 @@ fun TextCinemaChairsStatus(stringId: Int, circleColor: Color) {
                 .size(12.dp)
                 .background(circleColor, CircleShape)
         )
-        HorizontalSpacer4()
+        HorizontalSpacer(4.dp)
         Text(
             text = stringResource(stringId),
             fontWeight = FontWeight.Normal,
