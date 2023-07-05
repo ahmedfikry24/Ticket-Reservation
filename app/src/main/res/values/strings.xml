@@ -20,4 +20,9 @@
     <string name="actor_image">Actor Image</string>
     <string name="movie_description">"Professor Albus Dumbledore Knows the Powerful of dark wizard Gellert Grindlewald is moving to seize control of the wizarding world "</string>
     <string name="booking">Booking</string>
+    <string name="available">Available</string>
+    <string name="taken">Taken</string>
+    <string name="selected_">Selected</string>
+    <string name="_100">100.00$</string>
+    <string name="buy_Tickets">Buy Tickets</string>
 </resources>
