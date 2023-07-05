@@ -20,20 +20,18 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ticketreservations.R
 import com.example.ticketreservations.composable.ButtonBooking
-import com.example.ticketreservations.composable.HorizontalSpacer8
 import com.example.ticketreservations.composable.IconClose
 import com.example.ticketreservations.composable.IconMovieTime
 import com.example.ticketreservations.composable.ImageFromUrl
@@ -41,8 +39,7 @@ import com.example.ticketreservations.composable.MovieGenre
 import com.example.ticketreservations.composable.MovieRateWithTitle
 import com.example.ticketreservations.composable.TextMovieDescription
 import com.example.ticketreservations.composable.TextMovieName
-import com.example.ticketreservations.composable.VerticalSpacer16
-import com.example.ticketreservations.composable.VerticalSpacer8
+import com.example.ticketreservations.composable.VerticalSpacer
 import com.example.ticketreservations.ui.theme.grey
 import com.example.ticketreservations.ui.theme.orange
 import com.example.ticketreservations.ui.theme.white
@@ -51,13 +48,13 @@ import com.example.ticketreservations.ui.theme.white
 fun MovieInfoScreen(
     viewModel: MovieInfoViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsState()
     MovieInfoContent(state, viewModel::onClickBooking)
 }
 
 @Composable
 private fun MovieInfoContent(
-    state: State<List<String>>, onClickBooking: () -> Unit
+    state: List<String>, onClickBooking: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
         Box(Modifier.fillMaxSize(), Alignment.TopCenter) {
@@ -100,7 +97,7 @@ private fun MovieInfoContent(
                 .background(Color.Transparent)
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                VerticalSpacer16()
+                VerticalSpacer(16.dp)
                 Row(
                     Modifier
                         .fillMaxWidth()
@@ -119,27 +116,29 @@ private fun MovieInfoContent(
                         rateOne = R.string._4, rateTwo = R.string._10, title = R.string.ign
                     )
                 }
-                VerticalSpacer16()
+                VerticalSpacer(16.dp)
                 TextMovieName()
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                     MovieGenre(stringId = R.string.fantasy)
                     MovieGenre(stringId = R.string.adventure)
                 }
-                LazyRow(modifier = Modifier.fillMaxWidth(), contentPadding = PaddingValues(16.dp)) {
-                    items(state.value.size) {
+                LazyRow(
+                    modifier = Modifier.fillMaxWidth(), contentPadding = PaddingValues(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(state.size) {
                         ImageFromUrl(
-                            url = state.value[it],
+                            url = state[it],
                             modifier = Modifier
                                 .size(60.dp)
                                 .clip(CircleShape),
                             description = stringResource(R.string.actor_image),
                         )
-                        HorizontalSpacer8()
                     }
                 }
-                VerticalSpacer8()
+                VerticalSpacer(8.dp)
                 TextMovieDescription()
-                VerticalSpacer8()
+                VerticalSpacer(8.dp)
                 ButtonBooking(
                     stringId = R.string.booking,
                     width = 160,
@@ -148,11 +147,4 @@ private fun MovieInfoContent(
             }
         }
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewMovieInfo() {
-    MovieInfoScreen()
 }
