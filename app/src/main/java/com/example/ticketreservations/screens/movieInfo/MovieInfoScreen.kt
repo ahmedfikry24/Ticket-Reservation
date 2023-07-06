@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -27,11 +28,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ticketreservations.R
 import com.example.ticketreservations.composable.ButtonBooking
+import com.example.ticketreservations.composable.HorizontalSpacer
 import com.example.ticketreservations.composable.IconClose
 import com.example.ticketreservations.composable.IconMovieTime
 import com.example.ticketreservations.composable.ImageFromUrl
@@ -56,6 +59,7 @@ fun MovieInfoScreen(
 private fun MovieInfoContent(
     state: List<String>, onClickBooking: () -> Unit
 ) {
+    val cardHeight = LocalConfiguration.current.screenHeightDp / 2
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
         Box(Modifier.fillMaxSize(), Alignment.TopCenter) {
             Box(
@@ -93,7 +97,7 @@ private fun MovieInfoContent(
             colors = CardDefaults.cardColors(white),
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(400.dp, 800.dp)
+                .height(cardHeight.dp)
                 .background(Color.Transparent)
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -116,10 +120,12 @@ private fun MovieInfoContent(
                         rateOne = R.string._4, rateTwo = R.string._10, title = R.string.ign
                     )
                 }
-                VerticalSpacer(16.dp)
+                VerticalSpacer(8.dp)
                 TextMovieName(stringResource(R.string.fantastic_beasts_the_secrets_of_dumbledore))
+                VerticalSpacer(8.dp)
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                     MovieGenre(stringId = R.string.fantasy)
+                    HorizontalSpacer(width = 8.dp)
                     MovieGenre(stringId = R.string.adventure)
                 }
                 LazyRow(
