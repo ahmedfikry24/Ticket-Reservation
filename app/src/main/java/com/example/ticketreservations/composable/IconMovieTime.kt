@@ -18,9 +18,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.ticketreservations.R
+import com.example.ticketreservations.ui.theme.white87
 
 @Composable
-fun IconMovieTime(backgroundColor: Color = Color.Transparent) {
+fun IconMovieTime(backgroundColor: Color = Color.Transparent, textColor: Color = white87) {
     Box(
         Modifier
             .size(72.dp, 28.dp)
@@ -38,8 +39,12 @@ fun IconMovieTime(backgroundColor: Color = Color.Transparent) {
                 modifier = Modifier.padding(horizontal = 4.dp),
                 tint = Color.LightGray
             )
-            TextMovieTime(stringId = R.string.movie_time_hour)
-            TextMovieTime(stringId = R.string.movie_time_minutes, modifier = Modifier.padding(horizontal = 2.dp))
+            TextMovieTime(stringId = R.string.movie_time_hour, textColor = textColor)
+            TextMovieTime(
+                stringId = R.string.movie_time_minutes,
+                modifier = Modifier.padding(horizontal = 2.dp),
+                textColor = textColor
+            )
         }
     }
 }
