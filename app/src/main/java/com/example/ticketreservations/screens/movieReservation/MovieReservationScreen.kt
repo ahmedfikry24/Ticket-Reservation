@@ -27,6 +27,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.ticketreservations.AppDestination
 import com.example.ticketreservations.R
 import com.example.ticketreservations.composable.ButtonBooking
 import com.example.ticketreservations.composable.CinemaChairs
@@ -45,20 +47,24 @@ import com.example.ticketreservations.ui.theme.white
 
 @Composable
 fun MovieReservationScreen(
+    paddingValues: PaddingValues,
+    navController: NavController,
     viewModel: MovieReservationViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
     MovieReservationContent(
+        paddingValues,
         state = state,
         onClickChair = viewModel::onClickChair,
         onClickDay = viewModel::onClickDay,
         onClickTime = viewModel::onClickTime,
-        onClickBuyTickets = {}
+        onClickBuyTickets = { navController.popBackStack(AppDestination.HomeScreen.screen, false) }
     )
 }
 
 @Composable
 private fun MovieReservationContent(
+    paddingValues: PaddingValues,
     state: MovieReservationUiState,
     onClickDay: (Int) -> Unit,
     onClickTime: (Int) -> Unit,
@@ -72,6 +78,7 @@ private fun MovieReservationContent(
             Modifier
                 .fillMaxSize()
                 .background(black)
+                .padding(paddingValues)
                 .padding(16.dp),
         ) {
             IconClose()
