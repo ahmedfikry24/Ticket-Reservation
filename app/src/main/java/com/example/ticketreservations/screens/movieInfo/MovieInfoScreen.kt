@@ -117,7 +117,7 @@ private fun MovieInfoContent(
                     )
                 }
                 VerticalSpacer(16.dp)
-                TextMovieName()
+                TextMovieName(stringResource(R.string.fantastic_beasts_the_secrets_of_dumbledore))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                     MovieGenre(stringId = R.string.fantasy)
                     MovieGenre(stringId = R.string.adventure)
