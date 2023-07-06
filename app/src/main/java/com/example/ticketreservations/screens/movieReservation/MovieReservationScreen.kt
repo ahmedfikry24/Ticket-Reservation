@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -25,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ticketreservations.R
@@ -66,6 +66,7 @@ private fun MovieReservationContent(
     onClickBuyTickets: () -> Unit
 ) {
     val curveShape = CustomShape()
+    val cardHeight = LocalConfiguration.current.screenHeightDp / 3
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
         Column(
             Modifier
@@ -108,7 +109,7 @@ private fun MovieReservationContent(
             elevation = CardDefaults.cardElevation(12.dp),
             colors = CardDefaults.cardColors(white),
             modifier = Modifier
-                .heightIn(250.dp, 500.dp)
+                .height(cardHeight.dp)
                 .background(Color.Transparent)
         ) {
             Column {
