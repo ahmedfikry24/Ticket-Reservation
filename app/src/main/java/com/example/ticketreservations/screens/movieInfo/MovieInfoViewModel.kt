@@ -5,7 +5,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-@HiltViewModel
 class MovieInfoViewModel : ViewModel() {
 
     private val actorImageUrls = listOf(
@@ -19,8 +18,4 @@ class MovieInfoViewModel : ViewModel() {
     private val _state = MutableStateFlow(actorImageUrls)
     val state: StateFlow<List<String>>
         get() = _state
-
-    fun onClickBooking(){
-
-    }
 }

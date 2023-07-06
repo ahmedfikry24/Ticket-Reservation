@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.update
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-@HiltViewModel
 class MovieReservationViewModel : ViewModel() {
 
     private val _state = MutableStateFlow(MovieReservationUiState())
