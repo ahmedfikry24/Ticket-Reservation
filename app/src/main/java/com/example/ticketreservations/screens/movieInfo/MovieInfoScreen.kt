@@ -32,6 +32,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.ticketreservations.AppDestination
 import com.example.ticketreservations.R
 import com.example.ticketreservations.composable.ButtonBooking
 import com.example.ticketreservations.composable.HorizontalSpacer
@@ -49,18 +51,29 @@ import com.example.ticketreservations.ui.theme.white
 
 @Composable
 fun MovieInfoScreen(
+    paddingValues: PaddingValues,
+    navController: NavController,
     viewModel: MovieInfoViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
-    MovieInfoContent(state, viewModel::onClickBooking)
+    MovieInfoContent(
+        paddingValues,
+        state,
+        onClickBooking = { navController.navigate(AppDestination.MovieReservation.screen) })
 }
 
 @Composable
 private fun MovieInfoContent(
+    paddingValues: PaddingValues,
     state: List<String>, onClickBooking: () -> Unit
 ) {
     val cardHeight = LocalConfiguration.current.screenHeightDp / 2
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues),
+        contentAlignment = Alignment.BottomCenter
+    ) {
         Box(Modifier.fillMaxSize(), Alignment.TopCenter) {
             Box(
                 modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center
