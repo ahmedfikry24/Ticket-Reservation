@@ -1,15 +1,14 @@
 package com.example.ticketreservations.composable
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
 import com.example.ticketreservations.ui.theme.white
 
 @Composable
-fun CanvasDrawRect(modifier: Modifier = Modifier) {
+fun CanvasDrawRect(modifier: Modifier = Modifier,background:Color= white) {
     Canvas(modifier = modifier) {
-        drawRect(color = white, size = size)
+        drawRect(color = background, size = size)
     }
 }

@@ -29,6 +29,10 @@ class MovieReservationViewModel : ViewModel() {
         _state.update { it.copy(reservationDays = reservationDays) }
     }
 
+    fun onClickChair(index: Int) {
+        _state.update { it.copy(selectedChair = index) }
+    }
+
     fun onClickDay(index: Int) {
         _state.update { it.copy(selectedDay = index) }
     }

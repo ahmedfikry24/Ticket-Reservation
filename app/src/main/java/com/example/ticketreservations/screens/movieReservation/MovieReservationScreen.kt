@@ -30,7 +30,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ticketreservations.R
 import com.example.ticketreservations.composable.ButtonBooking
 import com.example.ticketreservations.composable.CinemaChairs
-import com.example.ticketreservations.composable.HorizontalSpacer
 import com.example.ticketreservations.composable.IconClose
 import com.example.ticketreservations.composable.ImageFromUrl
 import com.example.ticketreservations.composable.ReservationDateItem
@@ -51,6 +50,7 @@ fun MovieReservationScreen(
     val state by viewModel.state.collectAsState()
     MovieReservationContent(
         state = state,
+        onClickChair = viewModel::onClickChair,
         onClickDay = viewModel::onClickDay,
         onClickTime = viewModel::onClickTime,
         onClickBuyTickets = {}
@@ -62,6 +62,7 @@ private fun MovieReservationContent(
     state: MovieReservationUiState,
     onClickDay: (Int) -> Unit,
     onClickTime: (Int) -> Unit,
+    onClickChair: (Int) -> Unit,
     onClickBuyTickets: () -> Unit
 ) {
     val curveShape = CustomShape()
@@ -91,14 +92,11 @@ private fun MovieReservationContent(
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 items(count = 15) {
-                    Row(horizontalArrangement = Arrangement.Center) {
-                        CinemaChairs()
-                        HorizontalSpacer(4.dp)
-                        CinemaChairs()
-                    }
+                    val background = if (state.selectedChair == it) orange else white
+                    CinemaChairs(background) { onClickChair(it) }
                 }
             }
-            VerticalSpacer(24.dp)
+            VerticalSpacer(32.dp)
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround) {
                 TextCinemaChairsStatus(stringId = R.string.available, circleColor = white)
                 TextCinemaChairsStatus(stringId = R.string.taken, circleColor = Color.Gray)
