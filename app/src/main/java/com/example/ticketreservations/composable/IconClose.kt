@@ -2,6 +2,7 @@ package com.example.ticketreservations.composable
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -20,7 +21,9 @@ import com.example.ticketreservations.R
 import com.example.ticketreservations.ui.theme.white
 
 @Composable
-fun IconClose() {
+fun IconClose(
+    onClick:()->Unit
+) {
     Box(contentAlignment = Alignment.Center) {
         Canvas(
             modifier = Modifier
@@ -33,7 +36,8 @@ fun IconClose() {
             modifier = Modifier
                 .size(22.dp)
                 .clip(CircleShape)
-                .border(.5.dp, white, CircleShape),
+                .border(.5.dp, white, CircleShape)
+                .clickable(onClick = onClick),
             imageVector = Icons.Rounded.Close,
             contentDescription = stringResource(R.string.close),
             tint = white

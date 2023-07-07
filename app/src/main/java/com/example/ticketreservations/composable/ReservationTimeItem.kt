@@ -1,6 +1,7 @@
 package com.example.ticketreservations.composable
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
@@ -13,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.ticketreservations.ui.theme.black
 import com.example.ticketreservations.ui.theme.rubik
 
 @Composable
@@ -26,6 +28,7 @@ fun ReservationTimeItem(
         Modifier
             .size(60.dp, 30.dp)
             .background(boxColor, RoundedCornerShape(16.dp))
+            .border(.5.dp, black.copy(alpha = .5f), RoundedCornerShape(16.dp))
             .clickable(onClick = onClickItem),
         contentAlignment = Alignment.Center
     ) {
