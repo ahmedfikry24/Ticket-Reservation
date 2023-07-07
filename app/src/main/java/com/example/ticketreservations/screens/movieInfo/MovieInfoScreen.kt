@@ -59,13 +59,17 @@ fun MovieInfoScreen(
     MovieInfoContent(
         paddingValues,
         state,
-        onClickBooking = { navController.navigate(AppDestination.MovieReservation.screen) })
+        onClickBooking = { navController.navigate(AppDestination.MovieReservation.screen) },
+        onClickIcon = { navController.popBackStack() }
+    )
 }
 
 @Composable
 private fun MovieInfoContent(
     paddingValues: PaddingValues,
-    state: List<String>, onClickBooking: () -> Unit
+    state: List<String>,
+    onClickBooking: () -> Unit,
+    onClickIcon: () -> Unit,
 ) {
     val cardHeight = LocalConfiguration.current.screenHeightDp / 2
     Box(
@@ -99,7 +103,7 @@ private fun MovieInfoContent(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconClose()
+                IconClose(onClick = onClickIcon)
                 IconMovieTime(backgroundColor = grey)
             }
         }
