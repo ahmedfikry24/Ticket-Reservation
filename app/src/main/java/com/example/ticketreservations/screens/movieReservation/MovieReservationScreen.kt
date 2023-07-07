@@ -58,7 +58,8 @@ fun MovieReservationScreen(
         onClickChair = viewModel::onClickChair,
         onClickDay = viewModel::onClickDay,
         onClickTime = viewModel::onClickTime,
-        onClickBuyTickets = { navController.popBackStack(AppDestination.HomeScreen.screen, false) }
+        onClickBuyTickets = { navController.popBackStack(AppDestination.HomeScreen.screen, false) },
+        onClickIcon = { navController.popBackStack() }
     )
 }
 
@@ -69,7 +70,8 @@ private fun MovieReservationContent(
     onClickDay: (Int) -> Unit,
     onClickTime: (Int) -> Unit,
     onClickChair: (Int) -> Unit,
-    onClickBuyTickets: () -> Unit
+    onClickBuyTickets: () -> Unit,
+    onClickIcon: () -> Unit,
 ) {
     val curveShape = CustomShape()
     val cardHeight = LocalConfiguration.current.screenHeightDp / 3
@@ -81,7 +83,7 @@ private fun MovieReservationContent(
                 .padding(paddingValues)
                 .padding(16.dp),
         ) {
-            IconClose()
+            IconClose(onClick = onClickIcon)
             ImageFromUrl(
                 url = "https://hips.hearstapps.com/hmg-prod/images/d1pklzbuyaab0la-1552597012.jpg?crop=0.977xw:0.661xh;0.0226xw,0.0625xh&resize=2048:*",
                 modifier = Modifier
