@@ -67,61 +67,59 @@ private fun HomeContent(
     val deviceHeight = LocalConfiguration.current.screenHeightDp / 2
     val pagerState = rememberPagerState(2)
     val imageSize = LocalConfiguration.current.screenWidthDp / 1.5
-        Box(modifier = Modifier
+    Box(
+        modifier = Modifier
             .fillMaxSize()
-            .padding(paddingValues)
-            , contentAlignment = Alignment.TopCenter){
-            ImageFromUrl(
-                url = state.movies[pagerState.currentPage].imageUrl,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(deviceHeight.dp)
-                    .blur(40.dp)
-                    .clickable(onClick = onClickMovie),
-                scale = ContentScale.FillBounds
-            )
-            Column( horizontalAlignment = Alignment.CenterHorizontally) {
-                VerticalSpacer(height = 40.dp)
-                MovieStatus(isShowingNow = state.movies[pagerState.currentPage].isShowingNow)
-                VerticalSpacer(height = 20.dp)
-                HorizontalPager(
-                    pageCount = state.movies.size,
-                    state = pagerState,
-                    contentPadding = PaddingValues(16.dp),
-                    beyondBoundsPageCount = 2,
-                ) { page ->
-                    ImageFromUrl(
-                        url = state.movies[page].imageUrl,
-                        modifier = Modifier
-                            .size(imageSize.dp, 400.dp)
-                            .clip(RoundedCornerShape(20.dp))
-                            .graphicsLayer {
-                                val pageOffset =
-                                    ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
-                                alpha = lerp(
-                                    start = 0.5f,
-                                    stop = 1f,
-                                    fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                                ).also {
-                                    scaleX = it
-                                    scaleY = it
-                                }
+            .padding(paddingValues), contentAlignment = Alignment.TopCenter
+    ) {
+        ImageFromUrl(
+            url = state.movies[pagerState.currentPage].imageUrl,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(deviceHeight.dp)
+                .blur(40.dp),
+            scale = ContentScale.FillBounds
+        )
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            VerticalSpacer(height = 40.dp)
+            MovieStatus(isShowingNow = state.movies[pagerState.currentPage].isShowingNow)
+            HorizontalPager(
+                pageCount = state.movies.size,
+                state = pagerState,
+                contentPadding = PaddingValues(16.dp),
+                beyondBoundsPageCount = 2,
+            ) { page ->
+                ImageFromUrl(
+                    url = state.movies[page].imageUrl,
+                    modifier = Modifier
+                        .size(imageSize.dp, 400.dp)
+                        .clip(RoundedCornerShape(20.dp))
+                        .graphicsLayer {
+                            val pageOffset =
+                                ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
+                            alpha = lerp(
+                                start = 0.5f,
+                                stop = 1f,
+                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                            ).also {
+                                scaleX = it
+                                scaleY = it
                             }
-                            .clickable(onClick = onClickMovie),
-                        scale = ContentScale.Crop
-                    )
-                }
-                VerticalSpacer(height = 16.dp)
-                IconMovieTime(textColor = black)
-                VerticalSpacer(height = 8.dp)
-                TextMovieName(state.movies[pagerState.currentPage].name)
-                VerticalSpacer(height = 16.dp)
-                Row(horizontalArrangement = Arrangement.Center) {
-                    MovieGenre(stringId = R.string.fantasy)
-                    HorizontalSpacer(width = 8.dp)
-                    MovieGenre(stringId = R.string.adventure)
-                }
-                VerticalSpacer(height = 16.dp)
+                        }
+                        .clickable(onClick = onClickMovie),
+                    scale = ContentScale.Crop
+                )
+            }
+            VerticalSpacer(height = 16.dp)
+            IconMovieTime(textColor = black)
+            VerticalSpacer(height = 8.dp)
+            TextMovieName(state.movies[pagerState.currentPage].name)
+            VerticalSpacer(height = 16.dp)
+            Row(horizontalArrangement = Arrangement.Center) {
+                MovieGenre(stringId = R.string.fantasy)
+                HorizontalSpacer(width = 8.dp)
+                MovieGenre(stringId = R.string.adventure)
             }
         }
     }
+}
