@@ -7,3 +7,7 @@ val space8 = 8.dp
 val space16 = 16.dp
 val space24 = 24.dp
 val space32 = 32.dp
+
+val size42 = 42.dp
+val size24 = 24.dp
+

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -32,6 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.ticketreservations.AppDestination
 import com.example.ticketreservations.R
+import com.example.ticketreservations.composable.BottomNavigation
 import com.example.ticketreservations.composable.HorizontalSpacer
 import com.example.ticketreservations.composable.IconMovieTime
 import com.example.ticketreservations.composable.ImageFromUrl
@@ -120,6 +122,9 @@ private fun HomeContent(
                 HorizontalSpacer(width = 8.dp)
                 MovieGenre(stringId = R.string.adventure)
             }
+            Spacer(modifier = Modifier.weight(1f))
+            BottomNavigation()
+            VerticalSpacer(height = 16.dp)
         }
     }
 }
