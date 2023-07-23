@@ -1,7 +1,6 @@
 package com.example.ticketreservations.screens.movieReservation
 
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -28,8 +27,22 @@ class MovieReservationViewModel : ViewModel() {
         _state.update { it.copy(reservationDays = reservationDays) }
     }
 
-    fun onClickChair(index: Int) {
-        _state.update { it.copy(selectedChair = index) }
+    fun onClickChair(index: Int, isLeft: Boolean, chairState: ChairState) {
+        _state.update {
+            it.copy(
+                chairs = _state.value.chairs.toMutableList().apply {
+                    this[index] = when (isLeft) {
+                        true -> this[index].copy(
+                            leftChair = ChairUiState(chairState)
+                        )
+
+                        false -> this[index].copy(
+                            rightChair = ChairUiState(chairState)
+                        )
+                    }
+                }
+            )
+        }
     }
 
     fun onClickDay(index: Int) {

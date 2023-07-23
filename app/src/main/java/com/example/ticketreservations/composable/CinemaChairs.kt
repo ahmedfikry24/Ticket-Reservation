@@ -19,35 +19,40 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.ticketreservations.R
+import com.example.ticketreservations.ui.theme.space8
 
 @Composable
 fun CinemaChairs(
-    background:Color,
-    onClick: () -> Unit
+    backgroundLeft: Color,
+    backgroundRight: Color,
+    onClickLeft: () -> Unit,
+    onClickRight: () -> Unit,
 ) {
-    Box(contentAlignment = Alignment.BottomCenter) {
+    Box(
+        contentAlignment = Alignment.BottomCenter
+    ) {
         Column {
-            Row(Modifier.clickable(onClick = onClick), horizontalArrangement = Arrangement.Center) {
-                Row {
+            Row(horizontalArrangement = Arrangement.Center) {
+                Row(modifier = Modifier.clickable(onClick = onClickLeft)) {
                     CanvasDrawRect(
                         modifier = Modifier
                             .width(7.dp)
                             .height(22.dp)
                             .padding(1.dp)
-                            .clip(RoundedCornerShape(2.dp)),background
+                            .clip(RoundedCornerShape(2.dp)), backgroundLeft
                     )
                     Column {
                         CanvasDrawRect(
                             modifier = Modifier
                                 .size(15.dp)
-                                .clip(RoundedCornerShape(2.dp)),background
+                                .clip(RoundedCornerShape(2.dp)), backgroundLeft
                         )
                         CanvasDrawRect(
                             modifier = Modifier
                                 .width(16.dp)
                                 .height(8.dp)
                                 .padding(1.dp)
-                                .clip(RoundedCornerShape(2.dp)),background
+                                .clip(RoundedCornerShape(2.dp)), backgroundLeft
                         )
                     }
                     CanvasDrawRect(
@@ -55,30 +60,30 @@ fun CinemaChairs(
                             .width(7.dp)
                             .height(22.dp)
                             .padding(1.dp)
-                            .clip(RoundedCornerShape(2.dp)),background
+                            .clip(RoundedCornerShape(2.dp)), backgroundLeft
                     )
                 }
                 HorizontalSpacer(1.dp)
-                Row {
+                Row(modifier = Modifier.clickable(onClick = onClickRight)) {
                     CanvasDrawRect(
                         modifier = Modifier
                             .width(7.dp)
                             .height(22.dp)
                             .padding(1.dp)
-                            .clip(RoundedCornerShape(2.dp)),background
+                            .clip(RoundedCornerShape(2.dp)), backgroundRight
                     )
                     Column {
                         CanvasDrawRect(
                             modifier = Modifier
                                 .size(15.dp)
-                                .clip(RoundedCornerShape(2.dp)),background
+                                .clip(RoundedCornerShape(2.dp)), backgroundRight
                         )
                         CanvasDrawRect(
                             modifier = Modifier
                                 .width(16.dp)
                                 .height(8.dp)
                                 .padding(1.dp)
-                                .clip(RoundedCornerShape(2.dp)),background
+                                .clip(RoundedCornerShape(2.dp)), backgroundRight
                         )
                     }
                     CanvasDrawRect(
@@ -86,12 +91,12 @@ fun CinemaChairs(
                             .width(7.dp)
                             .height(22.dp)
                             .padding(1.dp)
-                            .clip(RoundedCornerShape(2.dp)),background
+                            .clip(RoundedCornerShape(2.dp)), backgroundRight
                     )
                 }
             }
-            VerticalSpacer(height = 4.dp)
+            VerticalSpacer(height = space8)
         }
-        Image(painter = painterResource(R.drawable.container) , contentDescription = "")
+        Image(painter = painterResource(R.drawable.container), contentDescription = "")
     }
 }
