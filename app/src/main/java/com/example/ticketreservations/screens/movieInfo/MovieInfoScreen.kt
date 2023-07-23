@@ -72,6 +72,7 @@ private fun MovieInfoContent(
     onClickIcon: () -> Unit,
 ) {
     val cardHeight = LocalConfiguration.current.screenHeightDp / 2
+    val imageHeight = LocalConfiguration.current.screenHeightDp / 1.8
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -86,7 +87,7 @@ private fun MovieInfoContent(
                     url = "https://hips.hearstapps.com/hmg-prod/images/d1pklzbuyaab0la-1552597012.jpg?crop=0.977xw:0.661xh;0.0226xw,0.0625xh&resize=2048:*",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .heightIn(400.dp, 800.dp),
+                        .heightIn(imageHeight.dp),
                     description = stringResource(R.string.movie_image),
                     scale = ContentScale.FillBounds
                 )
