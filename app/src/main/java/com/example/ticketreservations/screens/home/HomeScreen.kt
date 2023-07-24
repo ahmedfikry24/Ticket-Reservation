@@ -124,7 +124,6 @@ private fun HomeContent(
             }
             Spacer(modifier = Modifier.weight(1f))
             BottomNavigation()
-            VerticalSpacer(height = 16.dp)
         }
     }
 }

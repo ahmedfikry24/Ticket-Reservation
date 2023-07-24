@@ -24,7 +24,8 @@ import com.example.ticketreservations.ui.theme.white
 fun BottomNavigation () {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceAround
+        horizontalArrangement = Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
             modifier = Modifier

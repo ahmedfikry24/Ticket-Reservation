@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -47,6 +48,7 @@ import com.example.ticketreservations.composable.TextMovieName
 import com.example.ticketreservations.composable.VerticalSpacer
 import com.example.ticketreservations.ui.theme.grey
 import com.example.ticketreservations.ui.theme.orange
+import com.example.ticketreservations.ui.theme.space16
 import com.example.ticketreservations.ui.theme.white
 
 @Composable
@@ -118,7 +120,9 @@ private fun MovieInfoContent(
                 .height(cardHeight.dp)
                 .background(Color.Transparent)
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.padding(bottom = space16),
+                horizontalAlignment = Alignment.CenterHorizontally) {
                 VerticalSpacer(16.dp)
                 Row(
                     Modifier
@@ -162,7 +166,7 @@ private fun MovieInfoContent(
                 }
                 VerticalSpacer(8.dp)
                 TextMovieDescription()
-                VerticalSpacer(8.dp)
+                Spacer(modifier = Modifier.weight(1f))
                 ButtonBooking(
                     stringId = R.string.booking,
                     width = 160,

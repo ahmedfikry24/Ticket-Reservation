@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -79,6 +78,7 @@ private fun MovieReservationContent(
 ) {
     val curveShape = CustomShape()
     val cardHeight = LocalConfiguration.current.screenHeightDp / 3
+    val imageHeight = LocalConfiguration.current.screenHeightDp / 5
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
         Column(
             Modifier
@@ -92,7 +92,7 @@ private fun MovieReservationContent(
                 url = "https://hips.hearstapps.com/hmg-prod/images/d1pklzbuyaab0la-1552597012.jpg?crop=0.977xw:0.661xh;0.0226xw,0.0625xh&resize=2048:*",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp)
+                    .height(imageHeight.dp)
                     .clip(shape = curveShape),
                 scale = ContentScale.FillWidth
             )
@@ -100,18 +100,10 @@ private fun MovieReservationContent(
             LazyVerticalGrid(
                 modifier = Modifier.fillMaxWidth(),
                 columns = GridCells.Fixed(count = 3),
+                contentPadding = PaddingValues(vertical = space16),
                 verticalArrangement = Arrangement.spacedBy(space8),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                item(span = {
-                    GridItemSpan(3)
-                }) {
-                    Spacer(
-                        modifier = Modifier
-                            .height(space8)
-                            .background(Color.Transparent)
-                    )
-                }
                 items(state.chairs.size) { index ->
                     val backgroundLeft = when (state.chairs[index].leftChair.state) {
                         ChairState.AVAILABLE -> white
@@ -131,21 +123,18 @@ private fun MovieReservationContent(
                         }
 
                         val yAix = when (index) {
-                            1, 4, 7, 10, 13 -> 40f
+                            1, 4, 7, 10, 13 -> 20f
                             else -> 0f
                         }
 
                         translationY = yAix
                         rotationZ = rotation
                     }) {
-                        CinemaChairs(
-                            backgroundLeft = backgroundLeft,
+                        CinemaChairs(backgroundLeft = backgroundLeft,
                             backgroundRight = backgroundRight,
                             onClickLeft = {
                                 onClickChair(
-                                    index,
-                                    true,
-                                    when (state.chairs[index].leftChair.state) {
+                                    index, true, when (state.chairs[index].leftChair.state) {
                                         ChairState.AVAILABLE -> ChairState.SELECTED
                                         ChairState.TAKEN -> ChairState.AVAILABLE
                                         ChairState.SELECTED -> ChairState.TAKEN
@@ -154,27 +143,15 @@ private fun MovieReservationContent(
                             },
                             onClickRight = {
                                 onClickChair(
-                                    index,
-                                    false,
-                                    when (state.chairs[index].rightChair.state) {
+                                    index, false, when (state.chairs[index].rightChair.state) {
                                         ChairState.AVAILABLE -> ChairState.SELECTED
                                         ChairState.TAKEN -> ChairState.AVAILABLE
                                         ChairState.SELECTED -> ChairState.TAKEN
                                     }
                                 )
-                            }
-                        )
+                            })
                     }
 
-                }
-                item(span = {
-                    GridItemSpan(3)
-                }) {
-                    Spacer(
-                        modifier = Modifier
-                            .height(space8)
-                            .background(Color.Transparent)
-                    )
                 }
             }
         }
@@ -219,6 +196,7 @@ private fun MovieReservationContent(
                                 onClickItem = { onClickTime(it) })
                         }
                     }
+                    Spacer(modifier = Modifier.weight(1f))
                     Row(
                         Modifier
                             .fillMaxWidth()
