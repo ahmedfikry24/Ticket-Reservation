@@ -12,7 +12,7 @@ data class HomeUiState(
         ),
         MovieInfo(
             "https://static-koimoi.akamaized.net/wp-content/new-galleries/2023/01/indiana-jones-and-the-dial-of-destiny-001.jpg",
-            "Indiana Jones",true
+            "Indiana Jones",false
         ),
         MovieInfo(
             "https://static-koimoi.akamaized.net/wp-content/new-galleries/2022/12/ant-man-and-the-wasp-quantumania-01.jpg",
@@ -20,7 +20,7 @@ data class HomeUiState(
         ),
         MovieInfo(
             "https://cdn.moviefone.com/image-assets/603692/borxnSky4iAtOBWohFCWEUT2uZF.jpg?d=360x540&q=60",
-            "John Wick",true
+            "John Wick",false
         ),
         MovieInfo(
             "https://cdn.moviefone.com/admin-uploads/posters/transformers-movie-poster_1682615239.jpg?d=360x540&q=60",

@@ -115,21 +115,23 @@ private fun MovieReservationContent(
                         ChairState.TAKEN -> Color.Gray
                         ChairState.SELECTED -> orange
                     }
-                    Box(modifier = Modifier.graphicsLayer {
-                        val rotation = when (index) {
-                            0, 3, 6, 9, 12 -> 10f
-                            2, 5, 8, 11, 14 -> -10f
-                            else -> 0f
-                        }
+                    Box(modifier = Modifier
+                        .fillMaxWidth()
+                        .graphicsLayer {
+                            val rotation = when (index) {
+                                0, 3, 6, 9, 12 -> 10f
+                                2, 5, 8, 11, 14 -> -10f
+                                else -> 0f
+                            }
 
-                        val yAix = when (index) {
-                            1, 4, 7, 10, 13 -> 20f
-                            else -> 0f
-                        }
+                            val yAix = when (index) {
+                                1, 4, 7, 10, 13 -> 20f
+                                else -> 0f
+                            }
 
-                        translationY = yAix
-                        rotationZ = rotation
-                    }) {
+                            translationY = yAix
+                            rotationZ = rotation
+                        }, contentAlignment = Alignment.Center) {
                         CinemaChairs(backgroundLeft = backgroundLeft,
                             backgroundRight = backgroundRight,
                             onClickLeft = {
@@ -172,6 +174,7 @@ private fun MovieReservationContent(
             ) {
                 Column {
                     LazyRow(
+                        horizontalArrangement = Arrangement.spacedBy(space16),
                         contentPadding = PaddingValues(16.dp)
                     ) {
                         val weekDays: List<String> =
@@ -186,7 +189,10 @@ private fun MovieReservationContent(
                                 onClickItem = { onClickDay(it) })
                         }
                     }
-                    LazyRow(contentPadding = PaddingValues(16.dp)) {
+                    LazyRow(
+                        horizontalArrangement = Arrangement.spacedBy(space16),
+                        contentPadding = PaddingValues(16.dp)
+                    ) {
                         items(state.reservationTime.size) {
                             val background = if (state.selectedTime == it) lightGrey else white
                             val textColor = if (state.selectedTime == it) white else navy

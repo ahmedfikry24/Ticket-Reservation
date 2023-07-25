@@ -40,5 +40,4 @@ fun ReservationTimeItem(
             fontFamily = rubik,
         )
     }
-    HorizontalSpacer(8.dp)
 }

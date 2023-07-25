@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
@@ -18,12 +19,13 @@ import com.example.ticketreservations.ui.theme.black
 import com.example.ticketreservations.ui.theme.orange
 import com.example.ticketreservations.ui.theme.size24
 import com.example.ticketreservations.ui.theme.size42
+import com.example.ticketreservations.ui.theme.space16
 import com.example.ticketreservations.ui.theme.white
 
 @Composable
 fun BottomNavigation () {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().padding(bottom = space16),
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
     ) {

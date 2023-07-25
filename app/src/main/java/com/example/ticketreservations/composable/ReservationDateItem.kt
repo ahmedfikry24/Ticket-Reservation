@@ -56,5 +56,4 @@ fun ReservationDateItem(
             )
         }
     }
-    HorizontalSpacer(8.dp)
 }
